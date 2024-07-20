@@ -9,10 +9,14 @@ export class PaymentsService {
   private readonly stripe = new Stripe(envs.STRIPE_SECRET_KEY, {});
 
   async createPaymentSession(paymentSessionDto: PaymentSessionDto) {
-    const { currency, items } = paymentSessionDto;
+    const { currency, items, orderId } = paymentSessionDto;
 
     const session = await this.stripe.checkout.sessions.create({
-      payment_intent_data: {},
+      payment_intent_data: {
+        metadata: {
+          orderId,
+        },
+      },
       line_items: items.map((item) => ({
         price_data: {
           currency,
@@ -48,7 +52,10 @@ export class PaymentsService {
 
     switch (event.type) {
       case 'charge.succeeded':
-        console.debug(event);
+        const chargeSucceeded = event.data.object;
+        console.debug({
+          metadata: chargeSucceeded.metadata,
+        });
         break;
       default:
         console.debug(`Unhandled event type ${event.type}`);
