@@ -5,12 +5,15 @@ interface EnvVars {
   PORT: number;
   DATABASE_URL: string;
   NATS_SERVERS: string[];
+  STRIPE_SECRET_KEY: string;
 }
 
 const envsSchema = joi
   .object({
     PORT: joi.number().default(4001),
     DATABASE_URL: joi.string().required(),
+    NATS_SERVERS: joi.array().items(joi.string()).required(),
+    STRIPE_SECRET_KEY: joi.string().required(),
   })
   .unknown(true);
 
