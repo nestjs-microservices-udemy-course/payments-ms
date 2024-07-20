@@ -6,6 +6,7 @@ interface EnvVars {
   DATABASE_URL: string;
   NATS_SERVERS: string[];
   STRIPE_SECRET_KEY: string;
+  STRIPE_WH_SECRET: string;
 }
 
 const envsSchema = joi
@@ -14,6 +15,7 @@ const envsSchema = joi
     DATABASE_URL: joi.string().required(),
     NATS_SERVERS: joi.array().items(joi.string()).required(),
     STRIPE_SECRET_KEY: joi.string().required(),
+    STRIPE_WH_SECRET: joi.string().required(),
   })
   .unknown(true);
 
