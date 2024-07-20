@@ -5,6 +5,8 @@ interface EnvVars {
   PORT: number;
   DATABASE_URL: string;
   NATS_SERVERS: string[];
+  STRIPE_SUCCESS_URL: string;
+  STRIPE_CANCEL_URL: string;
   STRIPE_SECRET_KEY: string;
   STRIPE_WH_SECRET: string;
 }
@@ -16,6 +18,8 @@ const envsSchema = joi
     NATS_SERVERS: joi.array().items(joi.string()).required(),
     STRIPE_SECRET_KEY: joi.string().required(),
     STRIPE_WH_SECRET: joi.string().required(),
+    STRIPE_SUCCESS_URL: joi.string().required(),
+    STRIPE_CANCEL_URL: joi.string().required(),
   })
   .unknown(true);
 

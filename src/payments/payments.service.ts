@@ -28,8 +28,8 @@ export class PaymentsService {
         quantity: item.quantity,
       })),
       mode: 'payment',
-      success_url: `http://localhost:${envs.PORT}/payments/success`,
-      cancel_url: `http://localhost:${envs.PORT}/payments/cancel`,
+      success_url: envs.STRIPE_SUCCESS_URL,
+      cancel_url: envs.STRIPE_CANCEL_URL,
     });
 
     return session;
