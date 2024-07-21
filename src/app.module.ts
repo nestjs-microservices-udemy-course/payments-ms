@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { LoggerModule } from 'nestjs-pino';
-import { prettyTarget } from './utils/pretty.target';
 import { PaymentsModule } from './payments/payments.module';
+import { prettyTarget } from './utils/pretty.target';
 
 @Module({
   imports: [
